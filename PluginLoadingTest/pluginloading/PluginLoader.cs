@@ -6,40 +6,42 @@ namespace PluginLoadingTest.pluginloading
 {
     public class PluginLoader<T> where T : IPlugin
     {
-        private RawPluginLoader rawPluginLoader;
-        private Type pluginType;
+        private readonly RawPluginLoader _rawPluginLoader;
+        private readonly Type _pluginType;
 
-        private IDictionary<string, T> plugins;
+        private readonly IDictionary<string, T> _plugins;
 
         public PluginLoader(string directory)
         {
-            rawPluginLoader = new RawPluginLoader(directory);
-            pluginType = typeof(T);
-            plugins = new ConcurrentDictionary<string, T>();
+            _rawPluginLoader = new RawPluginLoader(directory);
+            _pluginType = typeof(T);
+            _plugins = new ConcurrentDictionary<string, T>();
         }
 
 
         public void Enable()
         {
-            rawPluginLoader.Load(pluginType, rawPlugins =>
+            _rawPluginLoader.Load(_pluginType, rawPlugins =>
             {
-                foreach (Type rawPlugin in rawPlugins)
+                foreach (var rawPlugin in rawPlugins)
                 {
-                    T plugin = (T) Activator.CreateInstance(rawPlugin);
-                    plugins.Add(plugin.GetName(), plugin);
-                    Console.Out.WriteLine("Enable Plugin "+plugin.GetName());
+                    var plugin = (T) Activator.CreateInstance(rawPlugin);
+                    _plugins.Add(plugin.GetName(), plugin);
+                    Console.Out.WriteLine("Enable Plugin " + plugin.GetName());
                     plugin.OnEnable();
-                    Console.Out.WriteLine("Plugin "+plugin.GetName()+" successfully enabled");
+                    Console.Out.WriteLine("Plugin " + plugin.GetName() + " successfully enabled");
                 }
             });
         }
 
         public void Disable()
         {
-            foreach (KeyValuePair<string, T> keyValuePair in plugins)
+            foreach (KeyValuePair<string, T> keyValuePair in _plugins)
             {
+                Console.Out.WriteLine("Disable Plugin " + keyValuePair.Value.GetName());
                 keyValuePair.Value.OnDisable();
-                plugins.Remove(keyValuePair);
+                Console.Out.WriteLine("Plugin " + keyValuePair.Value.GetName() + " successfully disabled");
+                _plugins.Remove(keyValuePair);
             }
         }
     }

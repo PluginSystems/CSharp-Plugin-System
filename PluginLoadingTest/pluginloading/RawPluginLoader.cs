@@ -9,54 +9,52 @@ namespace PluginLoadingTest.pluginloading
     {
         public delegate void DelieverRawPlugins(List<Type> rawPlugins);
 
-        private readonly string directory;
+        private readonly string _directory;
 
-        private List<Type> rawPlugins;
+        private List<Type> _rawPlugins;
 
 
         public RawPluginLoader(string directory)
         {
-            this.directory = directory;
+            _directory = directory;
         }
 
 
         public void Load(Type pluginType, DelieverRawPlugins callback)
         {
-            if (!Directory.Exists(directory))
+            if (!Directory.Exists(_directory))
             {
-                Console.Out.WriteLine("Creating directory "+directory+"!");
-                Directory.CreateDirectory(directory);
+                Console.Out.WriteLine("Creating directory "+_directory+"!");
+                Directory.CreateDirectory(_directory);
             }
 
-            string[] files = Directory.GetFiles(directory, "*.dll");
+            var files = Directory.GetFiles(_directory, "*.dll");
 
 
-            rawPlugins = new List<Type>();
+            _rawPlugins = new List<Type>();
 
-            foreach (string file in files)
+            foreach (var file in files)
             {
-                AssemblyName assemblyName = AssemblyName.GetAssemblyName(file);
+                var assemblyName = AssemblyName.GetAssemblyName(file);
 
-                Assembly assembly = Assembly.Load(assemblyName);
+                var assembly = Assembly.Load(assemblyName);
 
-                if (assembly != null)
+                if (assembly == null) continue;
+                var types = assembly.GetTypes();
+
+                foreach (var type in types)
                 {
-                    Type[] types = assembly.GetTypes();
+                    if (type.IsInterface || type.IsAbstract) continue;
 
-                    foreach (Type type in types)
+
+                    if (type.GetInterface(pluginType.FullName) != null)
                     {
-                        if (type.IsInterface || type.IsAbstract) continue;
-
-
-                        if (type.GetInterface(pluginType.FullName) != null)
-                        {
-                            rawPlugins.Add(type);
-                        }
+                        _rawPlugins.Add(type);
                     }
                 }
             }
 
-            callback?.Invoke(new List<Type>(rawPlugins));
+            callback?.Invoke(new List<Type>(_rawPlugins));
         }
     }
 }
