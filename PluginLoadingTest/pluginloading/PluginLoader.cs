@@ -44,6 +44,12 @@ namespace PluginLoadingTest.pluginloading
                 _plugins.Remove(keyValuePair);
             }
         }
+
+        public T GetByName(string name)
+        {
+            return _plugins[name];
+        }
+
     }
 
     public interface IPlugin
