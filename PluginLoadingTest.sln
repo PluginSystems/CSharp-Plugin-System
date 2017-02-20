@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginLoadingTest", "PluginLoadingTest/PluginLoadingTest.csproj", "{AD580B29-1109-4CE1-AC3F-E04DF779FE07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-sharpModule", "C-sharpModule\C-sharpModule.csproj", "{A008DD31-C8C5-4276-97CF-284002BC50ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AD580B29-1109-4CE1-AC3F-E04DF779FE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD580B29-1109-4CE1-AC3F-E04DF779FE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD580B29-1109-4CE1-AC3F-E04DF779FE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A008DD31-C8C5-4276-97CF-284002BC50ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A008DD31-C8C5-4276-97CF-284002BC50ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A008DD31-C8C5-4276-97CF-284002BC50ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A008DD31-C8C5-4276-97CF-284002BC50ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

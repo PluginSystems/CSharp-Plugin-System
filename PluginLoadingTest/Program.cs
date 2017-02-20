@@ -7,7 +7,7 @@ namespace PluginLoadingTest
         public static void Main(string[] args)
         {
 
-            var pluginLoader = new PluginLoader<Plugin>("./plugins/");
+            var pluginLoader = new PluginLoader<IPlugin>("./plugins/");
 
             pluginLoader.Enable();
 

@@ -46,7 +46,6 @@ namespace PluginLoadingTest.pluginloading
                 {
                     if (type.IsInterface || type.IsAbstract) continue;
 
-
                     if (type.GetInterface(pluginType.FullName) != null)
                     {
                         _rawPlugins.Add(type);
