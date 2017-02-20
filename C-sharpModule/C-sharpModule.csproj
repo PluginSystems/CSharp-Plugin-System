@@ -47,6 +47,10 @@
     <Compile Include="twitchapi\api\Stream.cs" />
     <Compile Include="twitchapi\api\StreamResponse.cs" />
     <Compile Include="twitchapi\impl\ChannelImpl.cs" />
+    <Compile Include="twitchapi\impl\PreviewImageUrlsImpl.cs" />
+    <Compile Include="twitchapi\impl\StreamImpl.cs" />
+    <Compile Include="twitchapi\impl\StreamResponseImplementation.cs" />
+    <Compile Include="twitchapi\impl\SyncTwitchConnector.cs" />
     <Compile Include="twitchapi\TwitchAPI.cs" />
     <Compile Include="TwitchPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

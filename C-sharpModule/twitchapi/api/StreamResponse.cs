@@ -1,8 +1,10 @@
-﻿namespace C_sharpModule.twitchapi.api
+﻿using System.Net;
+
+namespace C_sharpModule.twitchapi.api
 {
     public interface StreamResponse
     {
             Stream GetStream();
-            int GetConnectionStatus();
+            HttpStatusCode GetConnectionStatus();
     }
 }

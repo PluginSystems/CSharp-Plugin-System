@@ -2,11 +2,11 @@
 {
     public interface Stream
     {
-        long GetId();
+        long GetID();
         string GetGameName();
         long GetViewerCount();
         long GetVideoHeight();
-        long GetAverageFps();
+        long GetAverageFPS();
         long GetDelay();
         string GetCreatedAt();
         bool IsLivePlaylist();

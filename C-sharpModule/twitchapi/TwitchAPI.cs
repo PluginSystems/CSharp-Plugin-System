@@ -1,10 +1,27 @@
-﻿namespace C_sharpModule.twitchapi
+﻿using C_sharpModule.twitchapi.impl;
+
+namespace C_sharpModule.twitchapi
 {
     public class TwitchAPI
     {
-        public bool IsOnline()
+        private readonly SyncTwitchConnector _syncTwitchConnector;
+        private string _clientId;
+
+        public TwitchAPI(string clientID)
         {
-            throw new System.NotImplementedException();
+            _clientId = clientID;
+            _syncTwitchConnector = new SyncTwitchConnector(_clientId);
+        }
+
+        public bool hasConnectedTwitchAcount(string twitchUserName)
+        {
+            return _syncTwitchConnector.connectToStream(twitchUserName).GetStream() != null;
+        }
+
+
+        public SyncTwitchConnector getSyncTwitchConnector()
+        {
+            return _syncTwitchConnector;
         }
     }
 }

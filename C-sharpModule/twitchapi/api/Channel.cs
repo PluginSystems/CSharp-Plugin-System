@@ -2,16 +2,16 @@
 {
     public interface Channel
     {
-        bool isMature();
-        bool isPartner();
-        string getStatus();
-        string getBroadcasterLanguage();
-        string getDisplayname();
-        string getGameName();
-        string getLanguage();
-        long getID();
-        string getStreamersName();
-        string getCreatedAt();
-        string getUpdatedAt();
+        bool IsMature();
+        bool IsPartner();
+        string GetStatus();
+        string GetBroadcasterLanguage();
+        string GetDisplayname();
+        string GetGameName();
+        string GetLanguage();
+        long GetID();
+        string GetStreamersName();
+        string GetCreatedAt();
+        string GetUpdatedAt();
     }
 }
