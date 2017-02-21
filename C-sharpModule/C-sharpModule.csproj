@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="twitchapi\impl\ChannelImpl.cs" />
+    <Compile Include="twitchapi\impl\DummyStream.cs" />
+    <Compile Include="twitchapi\impl\Links.cs" />
     <Compile Include="twitchapi\impl\PreviewImageUrlsImpl.cs" />
     <Compile Include="twitchapi\impl\StreamImpl.cs" />
     <Compile Include="twitchapi\impl\StreamReader.cs" />

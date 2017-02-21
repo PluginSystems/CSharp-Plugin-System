@@ -16,8 +16,8 @@ namespace C_sharpModule
 
             Console.WriteLine("Spiel: " + _twitchApi
                                   ._syncTwitchConnector
-                                  .connectToStream("reabendet")
-                                  ._streamResponseImplementation?.getGameName);
+                                  .connectToStream("deadpine")
+                                  ._streamResponseImplementation?.stream?.getGameName);
         }
 
         public void OnDisable()
