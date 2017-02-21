@@ -14,7 +14,7 @@ namespace C_sharpModule.twitchapi.impl
             _httpWebResponse = httpResponse;
             if (httpResponse.StatusCode != HttpStatusCode.Accepted) return;
 
-            var jss = new DataContractJsonSerializer(typeof(StreamImpl),"stream");
+            var jss = new DataContractJsonSerializer(typeof(StreamImpl));
             _streamResponseImplementation = (StreamImpl) jss.ReadObject(_httpWebResponse.GetResponseStream());
             httpResponse.Close();
         }
