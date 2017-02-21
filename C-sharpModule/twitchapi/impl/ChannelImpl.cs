@@ -6,7 +6,7 @@ namespace C_sharpModule.twitchapi.impl
     public class ChannelImpl
     {
         [DataMember(Name = "mature")]
-        public bool isMature { get; set; };
+        public bool isMature { get; set; }
 
         [DataMember(Name = "partner")]
         public bool isPartner { set; get; }

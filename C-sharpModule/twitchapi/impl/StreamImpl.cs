@@ -2,7 +2,8 @@
 
 namespace C_sharpModule.twitchapi.impl
 {
-    [DataContract]
+    [DataContract(Name = "stream")]
+    //[KnownType(typeof(StreamImpl))]
     public class StreamImpl
     {
         [DataMember(Name = "channel")]

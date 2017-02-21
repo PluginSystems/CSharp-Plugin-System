@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace C_sharpModule.twitchapi.impl
 {
@@ -23,6 +24,10 @@ namespace C_sharpModule.twitchapi.impl
                 clientID);
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
 
+
+            System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream());
+
+            Console.WriteLine(reader.ReadToEnd());
             return new StreamReader(response);
         }
     }

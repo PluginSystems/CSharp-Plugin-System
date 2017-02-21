@@ -6,7 +6,7 @@ namespace C_sharpModule.twitchapi.impl
     public class StreamReader
     {
         private HttpWebResponse _httpWebResponse;
-        public StreamResponseImplementation _streamResponseImplementation { get; }
+        public StreamImpl _streamResponseImplementation { get; }
 
         public StreamReader(HttpWebResponse httpResponse)
         {
@@ -14,8 +14,8 @@ namespace C_sharpModule.twitchapi.impl
             _httpWebResponse = httpResponse;
             if (httpResponse.StatusCode != HttpStatusCode.Accepted) return;
 
-            var jss = new DataContractJsonSerializer(typeof(StreamResponseImplementation));
-            _streamResponseImplementation = (StreamResponseImplementation) jss.ReadObject(_httpWebResponse.GetResponseStream());
+            var jss = new DataContractJsonSerializer(typeof(StreamImpl),"stream");
+            _streamResponseImplementation = (StreamImpl) jss.ReadObject(_httpWebResponse.GetResponseStream());
             httpResponse.Close();
         }
     }

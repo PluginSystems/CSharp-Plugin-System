@@ -4,7 +4,7 @@ namespace C_sharpModule.twitchapi
 {
     public class TwitchAPI
     {
-        private readonly SyncTwitchConnector _syncTwitchConnector;
+        public SyncTwitchConnector _syncTwitchConnector { get; }
         private string _clientId;
 
         public TwitchAPI(string clientID)
@@ -15,13 +15,7 @@ namespace C_sharpModule.twitchapi
 
         public bool hasConnectedTwitchAcount(string twitchUserName)
         {
-            return _syncTwitchConnector.connectToStream(twitchUserName).GetStream() != null;
-        }
-
-
-        public SyncTwitchConnector getSyncTwitchConnector()
-        {
-            return _syncTwitchConnector;
+            return _syncTwitchConnector.connectToStream(twitchUserName)._streamResponseImplementation != null;
         }
     }
 }
