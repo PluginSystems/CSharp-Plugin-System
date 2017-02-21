@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using C_sharpModule.twitchapi.api;
 
 namespace C_sharpModule.twitchapi.impl
 {
@@ -14,17 +13,17 @@ namespace C_sharpModule.twitchapi.impl
 
         public bool isStreamingOnline(string twitchUserName)
         {
-            return connectToStream(twitchUserName).GetStream() != null;
+            return connectToStream(twitchUserName)._streamResponseImplementation != null;
         }
 
-        public StreamResponse connectToStream(string twitchUserName)
+        public StreamReader connectToStream(string twitchUserName)
         {
             HttpWebRequest request = HttpWebRequest.CreateHttp(
                 "https://api.twitch.tv/kraken/streams/" + twitchUserName + "?client_id=" +
                 clientID);
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
 
-            return new StreamResponseImplementation(response);
+            return new StreamReader(response);
         }
     }
 }

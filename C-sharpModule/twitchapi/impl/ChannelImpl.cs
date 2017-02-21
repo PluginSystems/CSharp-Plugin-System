@@ -1,55 +1,41 @@
-﻿using System;
-using C_sharpModule.twitchapi.api;
-using Newtonsoft.Json.Linq;
+﻿using System.Runtime.Serialization;
 
 namespace C_sharpModule.twitchapi.impl
 {
-    public class ChannelImpl : Channel
+    [DataContract]
+    public class ChannelImpl
     {
+        [DataMember(Name = "mature")]
+        public bool isMature { get; set; };
 
-        private JObject jsonObject;
-        public ChannelImpl(JObject jsonObject) {
-            this.jsonObject= (JObject) jsonObject?.GetValue("channel");
-        }
-        public bool IsMature() {
-            return (bool) jsonObject.GetValue("mature");
-        }
-        public bool IsPartner() {
-            return (bool) jsonObject.GetValue("partner");
-        }
-        public string GetStatus() {
-            return (string) jsonObject.GetValue("status");
-        }
-        public string GetBroadcasterLanguage() {
-            return (string) jsonObject.GetValue("broadcaster_language");
-        }
-        public string GetDisplayname() {
-            return (string) jsonObject.GetValue("display_name");
-        }
-        public string GetGameName() {
-            return (string) jsonObject.GetValue("game");
-        }
-        public string GetLanguage() {
-            return (string) jsonObject.GetValue("language");
-        }
-        public long GetID() {
-            return (long) jsonObject.GetValue("_id");
-        }
-        public string GetStreamersName() {
-            return (string) jsonObject.GetValue("name");
-        }
-        public string GetCreatedAt() {
-            return (string) jsonObject.GetValue("created_at");
-        }
-        public string GetUpdatedAt() {
-            return (string) jsonObject.GetValue("updated_at");
-        }
-        public JObject Unsafe()
-        {
-            return (JObject) jsonObject.DeepClone();
-        }
-        public static bool IsAvailable(JObject jsonObject){
-            return jsonObject.GetValue("channel")!=null;
-        }
+        [DataMember(Name = "partner")]
+        public bool isPartner { set; get; }
+
+        [DataMember(Name = "status")]
+        public string getStatus { set; get; }
+
+        [DataMember(Name = "display_name")]
+        public string getDisplayName { set; get; }
+
+        [DataMember(Name = "broadcaster_language")]
+        public string getBroadcasterLanguage { set; get; }
+
+        [DataMember(Name = "game")]
+        public string getGameName { set; get; }
+
+        [DataMember(Name = "language")]
+        public string getLanguage { set; get; }
+
+        [DataMember(Name = "_id")]
+        public long getID { set; get; }
+
+        [DataMember(Name = "name")]
+        public string getStreamersName { get; set; }
+
+        [DataMember(Name = "created_at")]
+        public string getCreatedAt { set; get; }
+
+        [DataMember(Name = "updated_at")]
+        public string getUpdatedAt { set; get; }
     }
 }

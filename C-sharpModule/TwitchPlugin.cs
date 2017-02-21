@@ -17,7 +17,7 @@ namespace C_sharpModule
             // todo rewriting TwichAPI for C#
             Console.Out.WriteLine("Hey Ho from TwitchPlugin");
 
-            Console.WriteLine("Spiel: "+GetAPI().getSyncTwitchConnector().connectToStream("gronkh").GetStream().GetGameName());
+            Console.WriteLine("Spiel: "+GetAPI().getSyncTwitchConnector().connectToStream("gronkh")._streamResponseImplementation.stream.GetGameName());
         }
 
         public void OnDisable()

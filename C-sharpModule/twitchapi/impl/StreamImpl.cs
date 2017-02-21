@@ -1,76 +1,39 @@
-﻿using C_sharpModule.twitchapi.api;
-using Newtonsoft.Json.Linq;
+﻿using System.Runtime.Serialization;
 
 namespace C_sharpModule.twitchapi.impl
 {
-    public class StreamImpl : Stream
+    [DataContract]
+    public class StreamImpl
     {
-        private readonly JObject _jsonObject;
-        private readonly PreviewImageUrls _previewImageUrls;
-        private readonly Channel _channel;
+        [DataMember(Name = "channel")]
+        public ChannelImpl channel { set; get; }
 
-        public StreamImpl(JObject jsonObject)
-        {
-            _jsonObject = (JObject) jsonObject.GetValue("stream");
-            _previewImageUrls = PreviewImageUrlsImpl.IsAvailable(_jsonObject)
-                ? new PreviewImageUrlsImpl(_jsonObject)
-                : null;
-            _channel = ChannelImpl.IsAvailable(_jsonObject) ? new ChannelImpl(_jsonObject) : null;
-        }
+        [DataMember(Name = "preview")]
+        public PreviewImageUrlsImpl previewImages { get; set; }
 
-        public long GetID()
-        {
-            return (long) _jsonObject.GetValue("_id");
-        }
+        [DataMember(Name = "_id")]
+        public long getID { get; set; }
 
-        public string GetGameName()
-        {
-            return (string) _jsonObject.GetValue("game");
-        }
+        [DataMember(Name = "game")]
+        public string getGameName { set; get; }
 
-        public long GetViewerCount()
-        {
-            return (long) _jsonObject.GetValue("viewers");
-        }
 
-        public long GetVideoHeight()
-        {
-            return (long) _jsonObject.GetValue("video_height");
-        }
+        [DataMember(Name = "viewers")]
+        public long getViewerCount { set; get; }
 
-        public long GetAverageFPS()
-        {
-            return (long) _jsonObject.GetValue("average_fps");
-        }
+        [DataMember(Name = "video_height")]
+        public long getVideoHeight { set; get; }
 
-        public long GetDelay()
-        {
-            return (long) _jsonObject.GetValue("delay");
-        }
+        [DataMember(Name = "average_fps")]
+        public long getAverageFPS { set; get; }
 
-        public string GetCreatedAt()
-        {
-            return (string) _jsonObject.GetValue("created_at");
-        }
+        [DataMember(Name = "delay")]
+        public long getDelay { set; get; }
 
-        public bool IsLivePlaylist()
-        {
-            return (bool) _jsonObject.GetValue("is_playlist");
-        }
+        [DataMember(Name = "created_at")]
+        public string getCreatedAt { set; get; }
 
-        public PreviewImageUrls GetPreview()
-        {
-            return _previewImageUrls;
-        }
-
-        public Channel GetChannel()
-        {
-            return _channel;
-        }
-
-        public static bool IsAvailable(JObject jsonObject)
-        {
-            return jsonObject.GetValue("stream") != null;
-        }
+        [DataMember(Name = "is_playlist")]
+        public bool isLivePlaylist { set; get; }
     }
 }

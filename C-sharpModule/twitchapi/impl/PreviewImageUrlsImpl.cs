@@ -1,41 +1,26 @@
-﻿using C_sharpModule.twitchapi.api;
-using Newtonsoft.Json.Linq;
+﻿using System.Runtime.Serialization;
 
 namespace C_sharpModule.twitchapi.impl
 {
-    public class PreviewImageUrlsImpl : PreviewImageUrls
+    [DataContract]
+    public class PreviewImageUrlsImpl
     {
-        private JObject jsonObject;
+        [DataMember(Name = "small")]
+        public string getUrlSmall { set; get; }
 
-        public PreviewImageUrlsImpl(JObject jsonObject)
-        {
-            this.jsonObject = (JObject) jsonObject?.GetValue("preview");
-        }
+        [DataMember(Name = "medium")]
+        public string getUrlMedium { set; get; }
 
-        public string GetUrlSmall()
-        {
-            return (string) jsonObject.GetValue("small");
-        }
+        [DataMember(Name = "large")]
+        public string getUrlLarge { set; get; }
 
-        public string GetUrlMedium()
-        {
-            return (string) jsonObject.GetValue("medium");
-        }
-
-        public string GetUrlLarge()
-        {
-            return (string) jsonObject.GetValue("large");
-        }
+        [DataMember(Name = "template")]
+        public string getTemplate { set; get; }
 
         public string GetUrlWith(int width, int height)
         {
-            return ((string) jsonObject.GetValue("template")).Replace("{width}", width.ToString())
+            return getTemplate.Replace("{width}", width.ToString())
                 .Replace("{height}", height.ToString());
-        }
-
-        public static bool IsAvailable(JObject jsonObject)
-        {
-            return jsonObject.GetValue("preview") != null;
         }
     }
 }

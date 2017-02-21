@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>C_sharpModule</RootNamespace>
     <AssemblyName>C_sharpModule</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,16 +39,14 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="twitchapi\api\Channel.cs" />
-    <Compile Include="twitchapi\api\PreviewImageUrls.cs" />
-    <Compile Include="twitchapi\api\Stream.cs" />
-    <Compile Include="twitchapi\api\StreamResponse.cs" />
     <Compile Include="twitchapi\impl\ChannelImpl.cs" />
     <Compile Include="twitchapi\impl\PreviewImageUrlsImpl.cs" />
     <Compile Include="twitchapi\impl\StreamImpl.cs" />
+    <Compile Include="twitchapi\impl\StreamReader.cs" />
     <Compile Include="twitchapi\impl\StreamResponseImplementation.cs" />
     <Compile Include="twitchapi\impl\SyncTwitchConnector.cs" />
     <Compile Include="twitchapi\TwitchAPI.cs" />
