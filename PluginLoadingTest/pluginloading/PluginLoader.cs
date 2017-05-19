@@ -57,5 +57,6 @@ namespace PluginLoadingTest.pluginloading
         void OnEnable();
         void OnDisable();
         string GetName();
+        bool IsOnline();
     }
 }

@@ -30,6 +30,11 @@ namespace C_sharpModule
             return "TwitchPlugin";
         }
 
+        public bool IsOnline()
+        {
+            return _twitchApi._syncTwitchConnector.isStreamingOnline("deadpine");
+        }
+
         public TwitchAPI GetAPI()
         {
             return _twitchApi;

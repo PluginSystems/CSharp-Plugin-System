@@ -18,5 +18,10 @@ namespace PluginLoadingTest.pluginloading
         {
             return "First C# Plugin";
         }
+
+        public bool IsOnline()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,61 +1,52 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Timers;
+using NBench.Reporting;
+using NUnit.Framework;
 using PluginLoadingTest.pluginloading;
 
 namespace PluginLoadingTest.tests
 {
-    using NBench.Util;
-    using NBench;
-
-    [TestFixture]
+    [TestFixture(TestName = "Disable/Enable/Loading test")]
     public class PerformanceTest
     {
-        /// <summary>
-        /// Test to see if we can achieve max throughput on a <see cref="AtomicCounter"/>
-        /// </summary>
-        /*private Counter _counter;
+        public int MAX_COUNT { get; private set; } = 10;
 
-        [PerfSetup]
-        [TestCase]
-        public void Setup(BenchmarkContext context)
+        private PluginLoader<Plugin> _loader;
+
+        private List<long> stats;
+
+        private Stopwatch _stopwatch;
+
+        [SetUp]
+        public void Setup()
         {
-            _counter = context.GetCounter("TestCounter");
+            stats = new List<long>();
+            _loader = new PluginLoader<Plugin>("./bin/Debug/plugins/");
+
+            _stopwatch = new Stopwatch();
         }
 
-        [PerfBenchmark(Description = "Test to ensure that a minimal throughput test can be rapidly executed.",
-            NumberOfIterations = 3, RunMode = RunMode.Throughput,
-            RunTimeMilliseconds = 1000, TestMode = TestMode.Test)]
-        [CounterThroughputAssertion("TestCounter", MustBe.GreaterThan, 10000000.0d)]
-        [MemoryAssertion(MemoryMetric.TotalBytesAllocated, MustBe.LessThanOrEqualTo, ByteConstants.ThirtyTwoKb)]
-        [GcTotalAssertion(GcMetric.TotalCollections, GcGeneration.Gen2, MustBe.ExactlyEqualTo, 0.0d)]
-        public void Benchmark()
-        {
-            _counter.Increment();
-        }
-
-        [PerfCleanup]
-        public void Cleanup()
-        {
-            // does nothing
-        }*/
-
-
-
-        [TestCase]
+        [Test]
         public void TestLoading()
         {
-           PluginLoader<Plugin> pl = new  PluginLoader<Plugin>("plugins/");
-
-            pl.Enable();
 
 
+            for (int i = 0; i < MAX_COUNT; i++)
+            {
+                _stopwatch.Start();
+                _loader.Enable();
+                _loader.Disable();
+                _stopwatch.Stop();
+                stats.Add(_stopwatch.ElapsedMilliseconds);
+            }
 
-            pl.Disable();
 
-
-
+            foreach (long stat in stats)
+            {
+                Console.WriteLine(stat);
+            }
         }
-
-
-
     }
 }
