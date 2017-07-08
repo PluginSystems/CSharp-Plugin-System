@@ -1,8 +1,9 @@
-﻿using System;
+﻿#define benchmark
+
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using PluginLoadingTest.pluginloading;
+using PluginLoadingTest.tests;
+using PluginLoadingTest.tests.testcases;
 
 namespace PluginLoadingTest
 {
@@ -10,56 +11,28 @@ namespace PluginLoadingTest
     {
         public static void Main(string[] args)
         {
+            var stats = new List<TestCase>();
 
-            List<long> stats = new List<long>();
-            Stopwatch stopwatch = new Stopwatch();
-
-
-
-            stopwatch.Start();
-            var pluginLoader = new PluginLoader<IPlugin>("./plugins/");
-            stopwatch.Stop();
-
-            //stats.Add(stopwatch.ElapsedMilliseconds);
-            stopwatch.Reset();
-
-            for (int i = 0; i < 10; i++)
-            {
-                stopwatch.Start();
-                pluginLoader.Enable();
-
-                pluginLoader.Disable();
-
-                stopwatch.Stop();
-
-                stats.Add(stopwatch.ElapsedMilliseconds);
-                stopwatch.Reset();
-            }
-
-            Console.WriteLine("AVG(ms/op): "+ stats.Average());
-
-            stats.Clear();
-
-            pluginLoader.Enable();
+            stats.Add(new CreatePluginInstanceBencmark());
+            stats.Add(new OnEnableBenchmark());
+            stats.Add(new HttpPluginTwitchBenchmark());
 
 
+            stats.ForEach(testcase => testcase.RunTestFully(10));
 
-            for (int i = 0; i < 10; i++)
-            {
-                stopwatch.Start();
-                Console.WriteLine(pluginLoader.GetByName("TwitchPlugin").IsOnline());
-                stopwatch.Stop();
-                stats.Add(stopwatch.ElapsedMilliseconds);
-                stopwatch.Reset();
-            }
-
-
-            Console.WriteLine("AVH(ms/op): " + stats.Average());
-
-            pluginLoader.Disable();
-
-
-
+            createSpace(5);
+            
+            stats.ForEach(finishedTest => finishedTest.PrintStats());
         }
+        
+        
+        public static void createSpace(int lines)
+        {
+            for (int i = 0; i < lines; i++)
+            {
+                Console.WriteLine(" ");
+            }
+        }
+        
     }
 }

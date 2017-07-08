@@ -33,35 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fasterflect, Version=2.1.3.0, Culture=neutral, PublicKeyToken=38d18473284c1ca7">
-      <HintPath>..\packages\fasterflect.2.1.3\lib\net40\Fasterflect.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MigraDoc.DocumentObjectModel, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb">
-      <HintPath>..\packages\OxyPlot.Pdf.2014.1.229.1\lib\NET45\MigraDoc.DocumentObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="MigraDoc.Rendering, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb">
-      <HintPath>..\packages\OxyPlot.Pdf.2014.1.229.1\lib\NET45\MigraDoc.Rendering.dll</HintPath>
-    </Reference>
-    <Reference Include="MigraDoc.RtfRendering, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb">
-      <HintPath>..\packages\OxyPlot.Pdf.2014.1.229.1\lib\NET45\MigraDoc.RtfRendering.dll</HintPath>
-    </Reference>
-    <Reference Include="NBench, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NBench.Runner.1.0.1\lib\net45\NBench.dll</HintPath>
-    </Reference>
     <Reference Include="NBench.Runner, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\NBench.Runner.1.0.1\lib\net45\NBench.Runner.exe</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
-      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    <Reference Include="NBench.Runner, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\NBench.Runner.1.0.4\lib\net452\NBench.Runner.exe</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="NUnitBenchmarker.Benchmark, Version=1.0.0.3, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NUnitBenchmarker.Benchmark.1.0.0.3\lib\NET40\NUnitBenchmarker.Benchmark.dll</HintPath>
+    <Reference Include="NBench.Runner, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\NBench.Runner.1.0.4\lib\net452\NBench.Runner.exe</HintPath>
     </Reference>
     <Reference Include="NUnitBenchmarker.Core, Version=1.0.0.3, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\NUnitBenchmarker.Benchmark.1.0.0.3\lib\NET40\NUnitBenchmarker.Core.dll</HintPath>
@@ -71,21 +50,6 @@
     </Reference>
     <Reference Include="NUnitBenchmarker.UIService, Version=1.0.0.3, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\NUnitBenchmarker.Benchmark.1.0.0.3\lib\NET40\NUnitBenchmarker.UIService.dll</HintPath>
-    </Reference>
-    <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9">
-      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\net45\OxyPlot.dll</HintPath>
-    </Reference>
-    <Reference Include="OxyPlot.Pdf, Version=2014.1.229.1, Culture=neutral, PublicKeyToken=c167629db8cf8ad9">
-      <HintPath>..\packages\OxyPlot.Pdf.2014.1.229.1\lib\NET45\OxyPlot.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb">
-      <HintPath>..\packages\OxyPlot.Pdf.2014.1.229.1\lib\NET45\PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb">
-      <HintPath>..\packages\OxyPlot.Pdf.2014.1.229.1\lib\NET45\PdfSharp.Charting.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleSpeedTester, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\SimpleSpeedTester.1.1.0\lib\net40\SimpleSpeedTester.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -100,15 +64,18 @@
     <Compile Include="pluginloading\RawPluginLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tests\BenchmarkRun.cs" />
     <Compile Include="tests\PerformanceTest.cs" />
+    <Compile Include="tests\TestCase.cs" />
+    <Compile Include="tests\testcases\CreatePluginInstanceBencmark.cs" />
+    <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs" />
+    <Compile Include="tests\testcases\OnEnableBenchmark.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="NUnitBenchmarker.log4net.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
