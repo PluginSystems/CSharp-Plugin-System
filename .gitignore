@@ -29,3 +29,9 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+C-sharpModule/bin/
+C-sharpModule/obj/
+PluginLoadingTest/App.config
+PluginLoadingTest/bin/
+PluginLoadingTest/obj/
+
