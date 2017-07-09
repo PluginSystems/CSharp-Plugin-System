@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 
 namespace PluginLoadingTest.tests
 {
     public abstract class TestCase
     {
-        private Stopwatch _stopwatch = new Stopwatch();
+        private readonly Stopwatch _stopwatch = new Stopwatch();
         private IList<BenchmarkRun> _benchmarkRuns;
 
 
         public void RunTestFully(int cycles)
         {
             _benchmarkRuns = new List<BenchmarkRun>(cycles);
-            for (int i = 0; i < cycles; i++)
+            for (var i = 0; i < cycles; i++)
             {
                 _benchmarkRuns.Add(new BenchmarkRun());
                 RunTest(i);
@@ -25,24 +23,16 @@ namespace PluginLoadingTest.tests
 
         protected abstract void RunTest(int currentCycle);
 
-        public void PrintStats()
+        public void PrintStats(TextWriter writer)
         {
-            Console.WriteLine("Benchmark " + GetType().Name);
-            for (int i = 0; i < _benchmarkRuns.Count; i++)
+            writer.WriteLine("Benchmark " + GetType().Name+";microseconds/op");
+            for (var i = 0; i < _benchmarkRuns.Count; i++)
             {
-                Console.WriteLine("Run: " + (i+1));
-                _benchmarkRuns[i].PrintStats();
+                writer.WriteLine("Run: " + (i+1));
+                _benchmarkRuns[i].PrintStats(writer);
             }
-            
-            Program.createSpace(5);
-            
         }
-
-        protected double getTimeForRun()
-        {
-            return _stopwatch.Elapsed.TotalMilliseconds;
-        }
-
+        
         protected void StartTimer()
         {
             _stopwatch.Start();
@@ -60,12 +50,17 @@ namespace PluginLoadingTest.tests
 
         protected void DefineBenchmarkPoint(int cycle, string benchmarkPointName)
         {
-            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName, getTimeForRun());
+            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName, GetElapsedMicros());
         }
 
         protected void DefineBenchmarkPoint(int cycle, string benchmarkPointName, int run)
         {
-            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName + run, getTimeForRun());
+            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName + run,GetElapsedMicros());
+        }
+
+        private double GetElapsedMicros()
+        {
+            return _stopwatch.Elapsed.TotalMilliseconds * 100;
         }
 
     }

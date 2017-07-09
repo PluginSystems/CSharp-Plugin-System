@@ -1,7 +1,17 @@
-﻿using System;
+﻿//#define Linq
+
+
+
+using System;
 using System.Collections.Generic;
 using System.IO;
+#if Linq
+using System.Linq;    
+#endif
 using System.Reflection;
+
+
+
 
 namespace PluginLoadingTest.pluginloading
 {
@@ -24,7 +34,7 @@ namespace PluginLoadingTest.pluginloading
         {
             if (!Directory.Exists(_directory))
             {
-                Console.Out.WriteLine("Creating directory "+_directory+"!");
+                Console.Out.WriteLine("Creating directory " + _directory + "!");
                 Directory.CreateDirectory(_directory);
             }
 
@@ -40,9 +50,19 @@ namespace PluginLoadingTest.pluginloading
                 var assembly = Assembly.Load(assemblyName);
 
                 if (assembly == null) continue;
-                var types = assembly.GetTypes();
 
-                foreach (var type in types)
+
+                
+                
+                #if Linq
+                foreach (var type in assembly.GetTypes().Where(t=> pluginType.IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    _rawPlugins.Add(type);
+                }
+
+                #else
+                
+                foreach (var type in assembly.GetTypes())
                 {
                     if (type.IsInterface || type.IsAbstract) continue;
 
@@ -51,6 +71,7 @@ namespace PluginLoadingTest.pluginloading
                         _rawPlugins.Add(type);
                     }
                 }
+                #endif
             }
 
             callback?.Invoke(new List<Type>(_rawPlugins));

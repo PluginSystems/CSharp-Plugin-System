@@ -11,8 +11,7 @@ namespace PluginLoadingTest.tests.testcases
 
             pluginLoader.Enable();
 
-
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 StartTimer();
                 Console.WriteLine(pluginLoader.GetByName("TwitchPlugin").IsOnline());

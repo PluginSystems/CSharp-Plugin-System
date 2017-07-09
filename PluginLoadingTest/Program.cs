@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using PluginLoadingTest.tests;
 using PluginLoadingTest.tests.testcases;
 
@@ -11,26 +12,32 @@ namespace PluginLoadingTest
     {
         public static void Main(string[] args)
         {
-            var stats = new List<TestCase>();
+            var stats = new List<TestCase>
+            {
+                new LoadTypesBenchmark(),
+                new OnEnableBenchmark(),
+                new HttpPluginTwitchBenchmark()
+            };
 
-            stats.Add(new CreatePluginInstanceBencmark());
-            stats.Add(new OnEnableBenchmark());
-            stats.Add(new HttpPluginTwitchBenchmark());
 
+            var streamWriter = new StreamWriter("./performanceTest.csv");
 
             stats.ForEach(testcase => testcase.RunTestFully(10));
 
-            createSpace(5);
+            stats.ForEach(finishedTest => finishedTest.PrintStats(streamWriter));
             
-            stats.ForEach(finishedTest => finishedTest.PrintStats());
+            streamWriter.Flush();
+            streamWriter.Close();
+            
+            Console.Out.WriteLine("Test finished");
         }
         
         
-        public static void createSpace(int lines)
+        public static void CreateSpace(TextWriter writer,int lines)
         {
-            for (int i = 0; i < lines; i++)
+            for (var i = 0; i < lines; i++)
             {
-                Console.WriteLine(" ");
+                writer.WriteLine(" ");
             }
         }
         

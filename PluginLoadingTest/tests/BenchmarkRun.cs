@@ -1,36 +1,36 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace PluginLoadingTest.tests
 {
     public class BenchmarkRun
     {
-        private IDictionary<string, double> _stats = new ConcurrentDictionary<string, double>();
+        private readonly IDictionary<string, double> _stats = new ConcurrentDictionary<string, double>();
         
         
-        public void DefineBenchmarkPoint(string benchmarkPointName, double millisElapsed)
+        public void DefineBenchmarkPoint(string benchmarkPointName, double microsElapsed)
         {
-            _stats.Add(benchmarkPointName, millisElapsed);
+            _stats.Add(benchmarkPointName, microsElapsed);
         }
 
-        public void DefineBenchmarkPoint(string benchmarkPointName, int run, double millisElapsed)
+        public void DefineBenchmarkPoint(string benchmarkPointName, int run, double microsElapsed)
         {
-            _stats.Add(benchmarkPointName + run, millisElapsed);
+            _stats.Add(benchmarkPointName + run, microsElapsed);
         }
         
         public IList<string> GetStatsCommaSeperatedList()
         {
             
-            return _stats.Select(stat => stat.Key + "; " + stat.Value +"; miliseconds/op").ToList();
+            return _stats.Select(stat => stat.Key + "; " + stat.Value).ToList();
         }
         
-        public void PrintStats()
+        public void PrintStats(TextWriter writer)
         {
-            foreach (string stat in GetStatsCommaSeperatedList())
+            foreach (var stat in GetStatsCommaSeperatedList())
             {
-                Console.WriteLine(stat);
+                writer.WriteLine(stat);
             }
         }
         

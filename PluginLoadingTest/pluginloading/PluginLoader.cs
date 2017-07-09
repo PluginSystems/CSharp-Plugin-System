@@ -36,7 +36,7 @@ namespace PluginLoadingTest.pluginloading
 
         public void Disable()
         {
-            foreach (KeyValuePair<string, T> keyValuePair in _plugins)
+            foreach (var keyValuePair in _plugins)
             {
                 Console.Out.WriteLine("Disable Plugin " + keyValuePair.Value.GetName());
                 keyValuePair.Value.OnDisable();

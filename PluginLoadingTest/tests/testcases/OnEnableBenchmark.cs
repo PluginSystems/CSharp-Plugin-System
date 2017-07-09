@@ -9,7 +9,7 @@ namespace PluginLoadingTest.tests.testcases
 
             var pluginLoader = new PluginLoader<IPlugin>("./plugins/");
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 StartTimer();
 
