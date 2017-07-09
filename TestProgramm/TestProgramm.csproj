@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AD580B29-1109-4CE1-AC3F-E04DF779FE07}</ProjectGuid>
+    <ProjectGuid>{DF3C2127-90E2-4C53-B0BA-B13A86DF5919}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PluginLoadingTest</RootNamespace>
-    <AssemblyName>PluginLoadingTest</AssemblyName>
+    <RootNamespace>TestProgramm</RootNamespace>
+    <AssemblyName>TestProgramm</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,24 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NBench.Runner, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NBench.Runner.1.0.1\lib\net45\NBench.Runner.exe</HintPath>
-    </Reference>
-    <Reference Include="NBench.Runner, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NBench.Runner.1.0.4\lib\net452\NBench.Runner.exe</HintPath>
-    </Reference>
-    <Reference Include="NBench.Runner, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NBench.Runner.1.0.4\lib\net452\NBench.Runner.exe</HintPath>
-    </Reference>
-    <Reference Include="NUnitBenchmarker.Core, Version=1.0.0.3, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NUnitBenchmarker.Benchmark.1.0.0.3\lib\NET40\NUnitBenchmarker.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NUnitBenchmarker.UIClient, Version=1.0.0.3, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NUnitBenchmarker.Benchmark.1.0.0.3\lib\NET40\NUnitBenchmarker.UIClient.dll</HintPath>
-    </Reference>
-    <Reference Include="NUnitBenchmarker.UIService, Version=1.0.0.3, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NUnitBenchmarker.Benchmark.1.0.0.3\lib\NET40\NUnitBenchmarker.UIService.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,22 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pluginloading\Plugin.cs" />
-    <Compile Include="pluginloading\PluginLoader.cs" />
-    <Compile Include="pluginloading\RawPluginLoader.cs" />
+    <Compile Include="tests\BenchmarkRun.cs"/>  
+    <Compile Include="tests\TestCase.cs"/>  
+    <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs"/>  
+    <Compile Include="tests\testcases\LoadTypesBenchmark.cs"/>  
+    <Compile Include="tests\testcases\OnEnableBenchmark.cs"/>  
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tests\BenchmarkRun.cs" />
-    <Compile Include="tests\TestCase.cs" />
-    <Compile Include="tests\testcases\LoadTypesBenchmark.cs" />
-    <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs" />
-    <Compile Include="tests\testcases\OnEnableBenchmark.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\C-sharpModule\C-sharpModule.csproj">
+      <Project>{a008dd31-c8c5-4276-97cf-284002bc50ed}</Project>
+      <Name>C-sharpModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginLoader\PluginLoader.csproj">
+      <Project>{1cc19b22-3752-476e-a3e1-462d442bdd47}</Project>
+      <Name>PluginLoader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

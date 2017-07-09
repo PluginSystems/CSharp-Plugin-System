@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace PluginLoadingTest.pluginloading
+namespace PluginLoader.pluginloading
 {
     public class PluginLoader<T> where T : IPlugin
     {
@@ -47,7 +47,7 @@ namespace PluginLoadingTest.pluginloading
 
         public T GetByName(string name)
         {
-            return _plugins[name];
+            return _plugins.ContainsKey(name) ? _plugins[name] : default(T);
         }
 
     }
@@ -57,6 +57,5 @@ namespace PluginLoadingTest.pluginloading
         void OnEnable();
         void OnDisable();
         string GetName();
-        bool IsOnline();
     }
 }

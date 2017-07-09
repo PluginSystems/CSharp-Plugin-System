@@ -1,6 +1,7 @@
-﻿using PluginLoadingTest.pluginloading;
+﻿
+using PluginLoader.pluginloading;
 
-namespace PluginLoadingTest.tests.testcases
+namespace TestProgramm.tests.testcases
 {
     public class LoadTypesBenchmark : TestCase
     {

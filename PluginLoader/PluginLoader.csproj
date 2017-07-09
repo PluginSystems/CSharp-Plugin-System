@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A008DD31-C8C5-4276-97CF-284002BC50ED}</ProjectGuid>
+    <ProjectGuid>{1CC19B22-3752-476E-A3E1-462D442BDD47}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>C_sharpModule</RootNamespace>
-    <AssemblyName>C_sharpModule</AssemblyName>
+    <RootNamespace>PluginLoader</RootNamespace>
+    <AssemblyName>PluginLoader</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,32 +35,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="twitchapi\impl\ChannelImpl.cs" />
-    <Compile Include="twitchapi\impl\DummyStream.cs" />
-    <Compile Include="twitchapi\impl\Links.cs" />
-    <Compile Include="twitchapi\impl\PreviewImageUrlsImpl.cs" />
-    <Compile Include="twitchapi\impl\StreamImpl.cs" />
-    <Compile Include="twitchapi\impl\StreamReader.cs" />
-    <Compile Include="twitchapi\impl\StreamResponseImplementation.cs" />
-    <Compile Include="twitchapi\impl\SyncTwitchConnector.cs" />
-    <Compile Include="twitchapi\TwitchAPI.cs" />
-    <Compile Include="TwitchPlugin.cs" />
+    <Compile Include="pluginloading\PluginLoader.cs" />
+    <Compile Include="pluginloading\RawPluginLoader.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PluginLoader\PluginLoader.csproj">
-      <Project>{1cc19b22-3752-476e-a3e1-462d442bdd47}</Project>
-      <Name>PluginLoader</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PluginLoadingTest\PluginLoadingTest.csproj">
-      <Project>{AD580B29-1109-4CE1-AC3F-E04DF779FE07}</Project>
-      <Name>PluginLoadingTest</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

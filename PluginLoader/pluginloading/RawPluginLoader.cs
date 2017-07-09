@@ -1,19 +1,16 @@
 ﻿//#define Linq
 
 
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 #if Linq
 using System.Linq;    
 #endif
-using System.Reflection;
 
 
-
-
-namespace PluginLoadingTest.pluginloading
+namespace PluginLoader.pluginloading
 {
     public class RawPluginLoader
     {
@@ -36,6 +33,7 @@ namespace PluginLoadingTest.pluginloading
             {
                 Console.Out.WriteLine("Creating directory " + _directory + "!");
                 Directory.CreateDirectory(_directory);
+                
             }
 
             var files = Directory.GetFiles(_directory, "*.dll");

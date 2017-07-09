@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace PluginLoadingTest.tests
+namespace TestProgramm.tests
 {
     public class BenchmarkRun
     {

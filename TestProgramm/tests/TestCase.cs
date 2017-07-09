@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace PluginLoadingTest.tests
+namespace TestProgramm.tests
 {
     public abstract class TestCase
     {

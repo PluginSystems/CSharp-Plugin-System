@@ -1,17 +1,17 @@
-﻿#define benchmark
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using PluginLoadingTest.tests;
-using PluginLoadingTest.tests.testcases;
+using TestProgramm.tests;
+using TestProgramm.tests.testcases;
 
-namespace PluginLoadingTest
+
+namespace TestProgramm
 {
     internal class Program
     {
         public static void Main(string[] args)
         {
+            
             var stats = new List<TestCase>
             {
                 new LoadTypesBenchmark(),
@@ -30,16 +30,7 @@ namespace PluginLoadingTest
             streamWriter.Close();
             
             Console.Out.WriteLine("Test finished");
+            
         }
-        
-        
-        public static void CreateSpace(TextWriter writer,int lines)
-        {
-            for (var i = 0; i < lines; i++)
-            {
-                writer.WriteLine(" ");
-            }
-        }
-        
     }
 }

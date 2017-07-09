@@ -1,6 +1,7 @@
 ﻿using System;
 using C_sharpModule.twitchapi;
-using PluginLoadingTest.pluginloading;
+using PluginLoader.pluginloading;
+
 
 namespace C_sharpModule
 {
