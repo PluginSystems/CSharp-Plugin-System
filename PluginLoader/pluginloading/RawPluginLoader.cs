@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 #if Linq
 using System.Linq;    
@@ -64,7 +65,7 @@ namespace PluginLoader.pluginloading
                 {
                     if (type.IsInterface || type.IsAbstract) continue;
 
-                    if (type.GetInterface(pluginType.FullName) != null)
+                    if (type.GetInterfaces().Contains(pluginType))
                     {
                         _rawPlugins.Add(type);
                     }
