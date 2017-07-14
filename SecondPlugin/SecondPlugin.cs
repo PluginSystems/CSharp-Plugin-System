@@ -8,7 +8,6 @@ namespace SecondPlugin
         public void OnEnable()
         {
             Console.WriteLine("Enabled: Text only plugin");
-            
         }
 
         public void OnDisable()
@@ -16,9 +15,6 @@ namespace SecondPlugin
             Console.WriteLine("Disabled: Text only plugin");
         }
 
-        public string GetName()
-        {
-            return "SecondPlugin";
-        }
+        public string Name => "SecondPlugin";
     }
 }

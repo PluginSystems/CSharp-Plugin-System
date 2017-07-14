@@ -26,10 +26,7 @@ namespace C_sharpModule
             _twitchApi = null;
         }
 
-        public string GetName()
-        {
-            return "TwitchPlugin";
-        }
+        public string Name => "TwitchPlugin";
 
         public bool IsOnline()
         {

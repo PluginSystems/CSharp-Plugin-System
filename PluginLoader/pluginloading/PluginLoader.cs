@@ -26,10 +26,10 @@ namespace PluginLoader.pluginloading
                 foreach (var rawPlugin in rawPlugins)
                 {
                     var plugin = (T) Activator.CreateInstance(rawPlugin);
-                    _plugins.Add(plugin.GetName(), plugin);
-                    Console.Out.WriteLine("Enable Plugin " + plugin.GetName());
+                    _plugins.Add(plugin.Name, plugin);
+                    Console.Out.WriteLine("Enable Plugin " + plugin.Name);
                     plugin.OnEnable();
-                    Console.Out.WriteLine("Plugin " + plugin.GetName() + " successfully enabled");
+                    Console.Out.WriteLine("Plugin " + plugin.Name + " successfully enabled");
                 }
             });
         }
@@ -38,9 +38,9 @@ namespace PluginLoader.pluginloading
         {
             foreach (var keyValuePair in _plugins)
             {
-                Console.Out.WriteLine("Disable Plugin " + keyValuePair.Value.GetName());
+                Console.Out.WriteLine("Disable Plugin " + keyValuePair.Value.Name);
                 keyValuePair.Value.OnDisable();
-                Console.Out.WriteLine("Plugin " + keyValuePair.Value.GetName() + " successfully disabled");
+                Console.Out.WriteLine("Plugin " + keyValuePair.Value.Name + " successfully disabled");
                 _plugins.Remove(keyValuePair);
             }
         }
@@ -49,13 +49,12 @@ namespace PluginLoader.pluginloading
         {
             return _plugins.ContainsKey(name) ? _plugins[name] : default(T);
         }
-
     }
 
     public interface IPlugin
     {
         void OnEnable();
         void OnDisable();
-        string GetName();
+        string Name { get; };
     }
 }
