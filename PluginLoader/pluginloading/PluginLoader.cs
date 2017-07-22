@@ -49,12 +49,18 @@ namespace PluginLoader.pluginloading
         {
             return _plugins.ContainsKey(name) ? _plugins[name] : default(T);
         }
+
+        public RawPluginLoader GetRawPluginLoader()
+        {
+            return _rawPluginLoader;
+        }
+        
     }
 
     public interface IPlugin
     {
         void OnEnable();
         void OnDisable();
-        string Name { get; };
+        string Name { get; }
     }
 }

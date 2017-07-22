@@ -4,31 +4,36 @@ using PluginLoader.pluginloading;
 
 namespace TestProgramm.tests.testcases
 {
-    public class HttpPluginTwitchBenchmark : TestCase
+    public class HttpPluginTwitchBenchmark : PluginTestCase
     {
+        protected override void SetUp()
+        {
+            _pluginLoader.Enable(); 
+        }
+
         protected override void RunTest(int currentCycle)
         {
-            var pluginLoader = new PluginLoader<IPlugin>("./plugins/");
+            for (var i = 0; i < 10; i++)
+            {
+                StartTimer();
+                var plugin = _pluginLoader.GetByName("TwitchPlugin");
+                var twitchPlugin = plugin as TwitchPlugin;
+                Console.WriteLine("TwitchPlugin isOnline(true/false/empty -> plugin null):"+twitchPlugin?.IsOnline());
+                StopTimer();
+                DefineBenchmarkPoint(currentCycle, "ContextSwitch_with_web", i);
+                ResetTimer();
+            }
+        }
 
-            pluginLoader.Enable();
+       
 
+        protected override void TearDown()
+        {
+            _pluginLoader.Disable();
+        }
 
-            var pluginCheck = pluginLoader.GetByName("TwitchPlugin");
-            var twitchPluginCheck = pluginCheck as TwitchPlugin;
-            if (twitchPluginCheck != null)
-                for (var i = 0; i < 10; i++)
-                {
-                    StartTimer();
-                    var plugin = pluginLoader.GetByName("TwitchPlugin");
-                    var twitchPlugin = plugin as TwitchPlugin;
-                    if (twitchPlugin != null)
-                        Console.WriteLine(twitchPlugin.IsOnline());
-                    StopTimer();
-                    DefineBenchmarkPoint(currentCycle, "ContextSwitch_with_web", i);
-                    ResetTimer();
-                }
-
-            pluginLoader.Disable();
+        public HttpPluginTwitchBenchmark(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
+        {
         }
     }
 }

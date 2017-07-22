@@ -3,21 +3,18 @@ using PluginLoader.pluginloading;
 
 namespace TestProgramm.tests.testcases
 {
-    public class OnEnableBenchmark : TestCase
+    public class OnEnableBenchmark : PluginTestCase
     {
+       
         protected override void RunTest(int currentCycle)
         {
-
-            var pluginLoader = new PluginLoader<IPlugin>("./plugins/");
-
             for (var i = 0; i < 10; i++)
             {
                 StartTimer();
 
-                pluginLoader.Enable();
+                _pluginLoader.Enable();
 
-
-                pluginLoader.Disable();
+                _pluginLoader.Disable();
 
                 StopTimer();
 
@@ -25,6 +22,11 @@ namespace TestProgramm.tests.testcases
 
                 ResetTimer();
             }
+        }
+
+     
+        public OnEnableBenchmark(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
+        {
         }
     }
 }

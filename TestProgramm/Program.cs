@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using PluginLoader.pluginloading;
 using TestProgramm.tests;
 using TestProgramm.tests.testcases;
 
@@ -11,18 +12,22 @@ namespace TestProgramm
     {
         public static void Main(string[] args)
         {
+
+            var pluginLoader = new PluginLoader<IPlugin>("./plugins");
             
             var stats = new List<TestCase>
             {
-                new LoadTypesBenchmark(),
-                new OnEnableBenchmark(),
-                new HttpPluginTwitchBenchmark()
+                new LoadTypesBenchmark(pluginLoader),
+                new OnEnableBenchmark(pluginLoader),
+                new HttpPluginTwitchBenchmark(pluginLoader)
             };
 
+            const int count = 10;
 
-            var streamWriter = new StreamWriter("./performanceTest.csv");
+            var currentTimeMillis = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
+            var streamWriter = new StreamWriter("./results_"+count+"_"+currentTimeMillis+".csv");
 
-            stats.ForEach(testcase => testcase.RunTestFully(10));
+            stats.ForEach(testcase => testcase.RunTestFully(count));
 
             stats.ForEach(finishedTest => finishedTest.PrintStats(streamWriter));
             

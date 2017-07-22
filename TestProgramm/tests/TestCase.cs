@@ -16,20 +16,26 @@ namespace TestProgramm.tests
             for (var i = 0; i < cycles; i++)
             {
                 _benchmarkRuns.Add(new BenchmarkRun());
+                SetUp();
                 RunTest(i);
+                TearDown();
             }
         }
 
+        protected virtual void SetUp(){}
 
         protected abstract void RunTest(int currentCycle);
 
+
+        protected virtual void TearDown(){}
+        
+
         public void PrintStats(TextWriter writer)
         {
-            writer.WriteLine("Benchmark " + GetType().Name+";microseconds/op");
-            for (var i = 0; i < _benchmarkRuns.Count; i++)
+            writer.WriteLine("Benchmark " + GetType().Name+";nanoseconds/op");
+            foreach (BenchmarkRun benbBenchmarkRun in _benchmarkRuns)
             {
-                writer.WriteLine("Run: " + (i+1));
-                _benchmarkRuns[i].PrintStats(writer);
+                benbBenchmarkRun.PrintStats(writer);
             }
         }
         
@@ -50,17 +56,22 @@ namespace TestProgramm.tests
 
         protected void DefineBenchmarkPoint(int cycle, string benchmarkPointName)
         {
-            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName, GetElapsedMicros());
+            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName, GetElapsedNanos());
         }
 
         protected void DefineBenchmarkPoint(int cycle, string benchmarkPointName, int run)
         {
-            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName + run,GetElapsedMicros());
+            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName +"_"+(cycle+1)+"_"+ (run+1),GetElapsedNanos());
         }
 
         private double GetElapsedMicros()
         {
             return _stopwatch.Elapsed.TotalMilliseconds * 100;
+        }
+
+        private double GetElapsedNanos()
+        {
+            return _stopwatch.Elapsed.TotalMilliseconds * 1_000_000;
         }
 
     }

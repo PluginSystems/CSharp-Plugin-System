@@ -47,10 +47,6 @@
       <Project>{1cc19b22-3752-476e-a3e1-462d442bdd47}</Project>
       <Name>PluginLoader</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PluginLoadingTest\PluginLoadingTest.csproj">
-      <Project>{AD580B29-1109-4CE1-AC3F-E04DF779FE07}</Project>
-      <Name>PluginLoadingTest</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

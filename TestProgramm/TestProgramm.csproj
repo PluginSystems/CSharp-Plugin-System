@@ -41,11 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="tests\BenchmarkRun.cs"/>  
-    <Compile Include="tests\TestCase.cs"/>  
-    <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs"/>  
-    <Compile Include="tests\testcases\LoadTypesBenchmark.cs"/>  
-    <Compile Include="tests\testcases\OnEnableBenchmark.cs"/>  
+    <Compile Include="tests\BenchmarkRun.cs" />
+    <Compile Include="tests\PluginTestCase.cs" />
+    <Compile Include="tests\TestCase.cs" />
+    <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs" />
+    <Compile Include="tests\testcases\LoadTypesBenchmark.cs" />
+    <Compile Include="tests\testcases\OnEnableBenchmark.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
