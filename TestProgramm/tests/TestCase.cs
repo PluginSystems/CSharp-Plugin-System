@@ -13,13 +13,13 @@ namespace TestProgramm.tests
         public void RunTestFully(int cycles)
         {
             _benchmarkRuns = new List<BenchmarkRun>(cycles);
+            SetUp();
             for (var i = 0; i < cycles; i++)
             {
                 _benchmarkRuns.Add(new BenchmarkRun());
-                SetUp();
                 RunTest(i);
-                TearDown();
             }
+            TearDown();
         }
 
         protected virtual void SetUp(){}
