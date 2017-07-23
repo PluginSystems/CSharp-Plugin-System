@@ -34,7 +34,7 @@ namespace TestProgramm
 
             stats.ForEach(finishedTest =>
             {
-                var streamWriter = new StreamWriter("./results_"+count+"_"+finishedTest.GetType().Namespace+"_nanoseconds_"+currentTimeMillis+".csv");
+                var streamWriter = new StreamWriter("./results_"+count+"_"+finishedTest.GetName()+"_nanoseconds_"+currentTimeMillis+".csv");
                 finishedTest.PrintStats(streamWriter);
                 
                 streamWriter.Flush();

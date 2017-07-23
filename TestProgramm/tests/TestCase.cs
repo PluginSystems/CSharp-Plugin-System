@@ -33,7 +33,7 @@ namespace TestProgramm.tests
 
         protected abstract void RunTest(int currentCycle);
 
-        public string getName()
+        public string GetName()
         {
             return className;
         }
