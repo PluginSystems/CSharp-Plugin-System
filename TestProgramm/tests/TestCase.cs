@@ -9,6 +9,13 @@ namespace TestProgramm.tests
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private IList<BenchmarkRun> _benchmarkRuns;
 
+        private string className;
+
+        public TestCase()
+        {
+            className = GetType().Name;
+        }
+        
 
         public void RunTestFully(int cycles)
         {
@@ -26,7 +33,10 @@ namespace TestProgramm.tests
 
         protected abstract void RunTest(int currentCycle);
 
-        public abstract string getName();
+        public string getName()
+        {
+            return className;
+        }
 
         protected virtual void TearDown(){}
         
