@@ -14,11 +14,6 @@ namespace C_sharpModule
         {
             // twitch api key
             _twitchApi = new TwitchAPI("iiwsu6n5r8qiu1cug6zwupldjkfyn3");
-
-            Console.WriteLine("Spiel: " + _twitchApi
-                                  ._syncTwitchConnector
-                                  .connectToStream("deadpine")
-                                  ._streamResponseImplementation?.stream?.getGameName);
         }
 
         public void OnDisable()

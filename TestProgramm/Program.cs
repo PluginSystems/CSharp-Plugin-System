@@ -22,7 +22,7 @@ namespace TestProgramm
                 new HttpPluginTwitchBenchmark(pluginLoader)
             };
 
-            // 10, 50, 70, 250
+            // 10, 50, 70, 100, 250
             const int count = 250;
 
             var currentTimeMillis = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
