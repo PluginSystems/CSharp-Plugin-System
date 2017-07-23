@@ -26,13 +26,13 @@ namespace TestProgramm.tests
 
         protected abstract void RunTest(int currentCycle);
 
+        public abstract string getName();
 
         protected virtual void TearDown(){}
         
 
         public void PrintStats(TextWriter writer)
         {
-            writer.WriteLine("Benchmark " + GetType().Name+";nanoseconds/op");
             foreach (BenchmarkRun benbBenchmarkRun in _benchmarkRuns)
             {
                 benbBenchmarkRun.PrintStats(writer);

@@ -26,14 +26,23 @@ namespace TestProgramm
             const int count = 250;
 
             var currentTimeMillis = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
-            var streamWriter = new StreamWriter("./results_"+count+"_"+currentTimeMillis+".csv");
 
-            stats.ForEach(testcase => testcase.RunTestFully(count));
+            stats.ForEach(testcase =>
+            {
+                testcase.RunTestFully(count);
+            });
 
-            stats.ForEach(finishedTest => finishedTest.PrintStats(streamWriter));
+            stats.ForEach(finishedTest =>
+            {
+                var streamWriter = new StreamWriter("./results_"+count+"_"+finishedTest.GetType().Namespace+"_nanoseconds_"+currentTimeMillis+".csv");
+                finishedTest.PrintStats(streamWriter);
+                
+                streamWriter.Flush();
+                streamWriter.Close();
+                
+            });
             
-            streamWriter.Flush();
-            streamWriter.Close();
+          
             
             Console.Out.WriteLine("Test finished");
             

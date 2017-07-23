@@ -23,6 +23,12 @@ namespace TestProgramm.tests.testcases
             ResetTimer();
             
         }
+        
+        public override string getName()
+        {
+            return GetType().Name;
+        }
+
 
         protected override void TearDown()
         {

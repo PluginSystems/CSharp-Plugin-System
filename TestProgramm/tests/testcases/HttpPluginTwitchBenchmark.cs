@@ -25,7 +25,11 @@ namespace TestProgramm.tests.testcases
             }
         }
 
-       
+        public override string getName()
+        {
+            return GetType().Name;
+        }
+
 
         protected override void TearDown()
         {

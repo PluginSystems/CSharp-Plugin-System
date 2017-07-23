@@ -24,6 +24,13 @@ namespace TestProgramm.tests.testcases
             }
         }
 
+        
+        public override string getName()
+        {
+            return GetType().Name;
+        }
+
+        
      
         public OnEnableBenchmark(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
         {
