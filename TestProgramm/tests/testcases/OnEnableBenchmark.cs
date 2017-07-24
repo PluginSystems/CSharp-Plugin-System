@@ -1,31 +1,26 @@
-﻿﻿
-using PluginLoader.pluginloading;
+﻿using PluginLoader.pluginloading;
 
 namespace TestProgramm.tests.testcases
 {
     public class OnEnableBenchmark : PluginTestCase
     {
-       
         protected override void RunTest(int currentCycle)
         {
-            for (var i = 0; i < 10; i++)
-            {
-                StartTimer();
+            StartTimer();
 
-                _pluginLoader.Enable();
+            _pluginLoader.Enable();
 
-                _pluginLoader.Disable();
+            _pluginLoader.Disable();
 
-                StopTimer();
+            StopTimer();
 
-                DefineBenchmarkPoint(currentCycle, "Enable_Disable_Run", i);
+            DefineBenchmarkPoint(currentCycle, "Enable_Disable_Run");
 
-                ResetTimer();
-            }
+            ResetTimer();
         }
 
-        
-      public OnEnableBenchmark(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
+
+        public OnEnableBenchmark(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
         {
         }
     }

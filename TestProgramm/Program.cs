@@ -19,30 +19,34 @@ namespace TestProgramm
             {
                 new LoadTypesBenchmark(pluginLoader),
                 new OnEnableBenchmark(pluginLoader),
-                new HttpPluginTwitchBenchmark(pluginLoader)
+                new HttpPluginTwitchBenchmark(pluginLoader),
+                new ContextSwitch(pluginLoader),
+                new ContextSwitchReturnType(pluginLoader)
             };
 
             // 10, 50, 70, 100, 250
-            const int count = 250;
+            int[] count = {10, 50, 70, 100, 250};
 
             var currentTimeMillis = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
 
-            stats.ForEach(testcase =>
-            {
-                testcase.RunTestFully(count);
-            });
 
-            stats.ForEach(finishedTest =>
+            foreach (var cycle in count)
             {
-                var streamWriter = new StreamWriter("./results_"+count+"_"+finishedTest.GetName()+"_nanoseconds_"+currentTimeMillis+".csv");
-                finishedTest.PrintStats(streamWriter);
+                stats.ForEach(testcase =>
+                {
+                    testcase.RunTestFully(cycle);
+                });
+
+                stats.ForEach(finishedTest =>
+                {
+                    var streamWriter = new StreamWriter("./results_"+cycle+"_"+finishedTest.GetName()+"_nanoseconds_"+currentTimeMillis+".csv");
+                    finishedTest.PrintStats(streamWriter);
                 
-                streamWriter.Flush();
-                streamWriter.Close();
+                    streamWriter.Flush();
+                    streamWriter.Close();
                 
-            });
-            
-          
+                });
+            }
             
             Console.Out.WriteLine("Test finished");
             

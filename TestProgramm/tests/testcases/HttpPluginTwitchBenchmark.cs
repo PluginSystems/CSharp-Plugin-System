@@ -13,16 +13,13 @@ namespace TestProgramm.tests.testcases
 
         protected override void RunTest(int currentCycle)
         {
-            for (var i = 0; i < 10; i++)
-            {
                 StartTimer();
                 var plugin = _pluginLoader.GetByName("TwitchPlugin");
                 var twitchPlugin = plugin as TwitchPlugin;
                 Console.WriteLine("TwitchPlugin isOnline(true/false/empty -> plugin null):"+twitchPlugin?.IsOnline());
                 StopTimer();
-                DefineBenchmarkPoint(currentCycle, "ContextSwitch_with_web", i);
+                DefineBenchmarkPoint(currentCycle, "ContextSwitch_with_web");
                 ResetTimer();
-            }
         }
 
         protected override void TearDown()

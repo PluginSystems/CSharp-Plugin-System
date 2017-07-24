@@ -15,6 +15,17 @@ namespace SecondPlugin
             Console.WriteLine("Disabled: Text only plugin");
         }
 
+        
+        public string ReturnParameter(string par)
+        {
+            return par;
+        }
+
+        public void printParameter(string par)
+        {
+            Console.WriteLine(par);
+        }
+        
         public string Name => "SecondPlugin";
     }
 }

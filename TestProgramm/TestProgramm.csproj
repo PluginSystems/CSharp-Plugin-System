@@ -44,6 +44,8 @@
     <Compile Include="tests\BenchmarkRun.cs" />
     <Compile Include="tests\PluginTestCase.cs" />
     <Compile Include="tests\TestCase.cs" />
+    <Compile Include="tests\testcases\ContextSwitchBenchmark.cs" />
+    <Compile Include="tests\testcases\ContextSwitchReturnType.cs" />
     <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs" />
     <Compile Include="tests\testcases\LoadTypesBenchmark.cs" />
     <Compile Include="tests\testcases\OnEnableBenchmark.cs" />
@@ -58,6 +60,10 @@
     <ProjectReference Include="..\PluginLoader\PluginLoader.csproj">
       <Project>{1cc19b22-3752-476e-a3e1-462d442bdd47}</Project>
       <Name>PluginLoader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SecondPlugin\SecondPlugin.csproj">
+      <Project>{e895f248-200e-4cd5-a52c-c43519c7fd6b}</Project>
+      <Name>SecondPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
