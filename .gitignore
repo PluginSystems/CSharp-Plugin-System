@@ -37,4 +37,5 @@ SecondPlugin/bin/
 SecondPlugin/obj/
 TestProgramm/bin/
 TestProgramm/obj/
+*.sln.DotSettings.user
 
