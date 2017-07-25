@@ -19,7 +19,6 @@ namespace TestProgramm
             {
                 new LoadTypesBenchmark(pluginLoader),
                 new OnEnableBenchmark(pluginLoader),
-                new HttpPluginTwitchBenchmark(pluginLoader),
                 new ContextSwitch(pluginLoader),
                 new ContextSwitchReturnType(pluginLoader)
             };
