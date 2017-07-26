@@ -7,6 +7,7 @@ namespace TestProgramm.tests.testcases
     {
         protected override void SetUp()
         {
+            _pluginLoader.Load();
             _pluginLoader.Enable(); 
         }
         

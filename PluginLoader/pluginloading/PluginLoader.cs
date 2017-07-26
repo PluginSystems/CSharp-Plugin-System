@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PluginLoader.pluginloading
 {
@@ -9,21 +10,27 @@ namespace PluginLoader.pluginloading
         private readonly RawPluginLoader _rawPluginLoader;
         private readonly Type _pluginType;
 
+        private IList<Type> _rawPlugins;
         private readonly IDictionary<string, T> _plugins;
 
         public PluginLoader(string directory)
         {
             _rawPluginLoader = new RawPluginLoader(directory);
             _pluginType = typeof(T);
+            _rawPlugins = new List<Type>();
             _plugins = new ConcurrentDictionary<string, T>();
+        }
+
+
+        public void Load()
+        {
+            _rawPluginLoader.Load(_pluginType, rawPlugins => _rawPlugins = rawPlugins);
         }
 
 
         public void Enable()
         {
-            _rawPluginLoader.Load(_pluginType, rawPlugins =>
-            {
-                foreach (var rawPlugin in rawPlugins)
+                foreach (var rawPlugin in _rawPlugins)
                 {
                     var plugin = (T) Activator.CreateInstance(rawPlugin);
                     _plugins.Add(plugin.Name, plugin);
@@ -31,7 +38,6 @@ namespace PluginLoader.pluginloading
                     plugin.OnEnable();
                     Console.Out.WriteLine("Plugin " + plugin.Name + " successfully enabled");
                 }
-            });
         }
 
         public void Disable()

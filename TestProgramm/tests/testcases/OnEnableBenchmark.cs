@@ -4,6 +4,13 @@ namespace TestProgramm.tests.testcases
 {
     public class OnEnableBenchmark : PluginTestCase
     {
+
+
+        protected  override void SetUp()
+        {
+            _pluginLoader.Load();
+        }
+        
         protected override void RunTest(int currentCycle)
         {
             StartTimer();
