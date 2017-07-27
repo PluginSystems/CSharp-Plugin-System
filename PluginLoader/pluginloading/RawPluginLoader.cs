@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 #if Linq
 using System.Linq;    
 #endif
@@ -32,7 +33,6 @@ namespace PluginLoader.pluginloading
         {
             if (!Directory.Exists(_directory))
             {
-                Console.Out.WriteLine("Creating directory " + _directory + "!");
                 Directory.CreateDirectory(_directory);
                 
             }

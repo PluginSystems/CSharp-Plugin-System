@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="SecondPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringFace.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginLoader\PluginLoader.csproj">

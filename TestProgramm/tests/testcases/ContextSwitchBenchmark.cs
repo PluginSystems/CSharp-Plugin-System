@@ -1,5 +1,5 @@
-﻿using System;
-using PluginLoader.pluginloading;
+﻿using PluginLoader.pluginloading;
+using SecondPlugin;
 
 namespace TestProgramm.tests.testcases
 {
@@ -14,10 +14,10 @@ namespace TestProgramm.tests.testcases
         
         protected override void RunTest(int currentCycle)
         {
-            StartTimer();
             var plugin = _pluginLoader.GetByName("SecondPlugin");
-            var secondPlugin = plugin as SecondPlugin.SecondPlugin;
-            secondPlugin?.printParameter("ContextSwitch");
+            var secondPlugin = plugin as StringFace;
+            StartTimer();
+            secondPlugin?.test();
             StopTimer();
             DefineBenchmarkPoint(currentCycle, "ContextSwitch");
             ResetTimer();

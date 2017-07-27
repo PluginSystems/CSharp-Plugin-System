@@ -45,7 +45,6 @@
     <Compile Include="tests\PluginTestCase.cs" />
     <Compile Include="tests\TestCase.cs" />
     <Compile Include="tests\testcases\ContextSwitchBenchmark.cs" />
-    <Compile Include="tests\testcases\ContextSwitchReturnType.cs" />
     <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs" />
     <Compile Include="tests\testcases\LoadTypesBenchmark.cs" />
     <Compile Include="tests\testcases\OnEnableBenchmark.cs" />

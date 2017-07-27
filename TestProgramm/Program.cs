@@ -20,11 +20,10 @@ namespace TestProgramm
                 new LoadTypesBenchmark(pluginLoader),
                 new OnEnableBenchmark(pluginLoader),
                 new ContextSwitch(pluginLoader),
-                new ContextSwitchReturnType(pluginLoader)
             };
 
             // 10, 50, 70, 100, 250
-            int[] count = {10, 50, 70, 100, 250};
+            int[] count = {5000,10000,50000};
 
             var currentTimeMillis = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
 

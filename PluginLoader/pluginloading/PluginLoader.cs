@@ -34,9 +34,7 @@ namespace PluginLoader.pluginloading
                 {
                     var plugin = (T) Activator.CreateInstance(rawPlugin);
                     _plugins.Add(plugin.Name, plugin);
-                    Console.Out.WriteLine("Enable Plugin " + plugin.Name);
                     plugin.OnEnable();
-                    Console.Out.WriteLine("Plugin " + plugin.Name + " successfully enabled");
                 }
         }
 
@@ -44,9 +42,7 @@ namespace PluginLoader.pluginloading
         {
             foreach (var keyValuePair in _plugins)
             {
-                Console.Out.WriteLine("Disable Plugin " + keyValuePair.Value.Name);
                 keyValuePair.Value.OnDisable();
-                Console.Out.WriteLine("Plugin " + keyValuePair.Value.Name + " successfully disabled");
                 _plugins.Remove(keyValuePair);
             }
         }
