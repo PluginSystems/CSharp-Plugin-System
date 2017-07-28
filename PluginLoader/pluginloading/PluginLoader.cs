@@ -10,32 +10,35 @@ namespace PluginLoader.pluginloading
         private readonly RawPluginLoader _rawPluginLoader;
         private readonly Type _pluginType;
 
-        private IList<Type> _rawPlugins;
         private readonly IDictionary<string, T> _plugins;
 
         public PluginLoader(string directory)
         {
             _rawPluginLoader = new RawPluginLoader(directory);
             _pluginType = typeof(T);
-            _rawPlugins = new List<Type>();
             _plugins = new ConcurrentDictionary<string, T>();
         }
 
 
         public void Load()
         {
-            _rawPluginLoader.Load(_pluginType, rawPlugins => _rawPlugins = rawPlugins);
+            _rawPluginLoader.Load(_pluginType, rawPlugins =>
+            {
+                rawPlugins.ForEach(rawPlugin =>
+                {
+                    var plugin = (T) Activator.CreateInstance(rawPlugin);
+                    _plugins.Add(plugin.Name, plugin);
+                });
+            });
         }
 
 
         public void Enable()
         {
-                foreach (var rawPlugin in _rawPlugins)
-                {
-                    var plugin = (T) Activator.CreateInstance(rawPlugin);
-                    _plugins.Add(plugin.Name, plugin);
-                    plugin.OnEnable();
-                }
+            foreach (var plugin in _plugins)
+            {
+                plugin.Value.OnEnable();
+            }
         }
 
         public void Disable()
@@ -43,8 +46,13 @@ namespace PluginLoader.pluginloading
             foreach (var keyValuePair in _plugins)
             {
                 keyValuePair.Value.OnDisable();
-                _plugins.Remove(keyValuePair);
             }
+        }
+
+
+        public void Unload()
+        {
+            _plugins.Clear();
         }
 
         public T GetByName(string name)
@@ -56,7 +64,6 @@ namespace PluginLoader.pluginloading
         {
             return _rawPluginLoader;
         }
-        
     }
 
     public interface IPlugin
