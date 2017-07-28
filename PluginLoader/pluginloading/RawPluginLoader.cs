@@ -16,11 +16,11 @@ namespace PluginLoader.pluginloading
 {
     public class RawPluginLoader
     {
-        public delegate void DelieverRawPlugins(List<Type> rawPlugins);
+        public delegate void DelieverRawPlugins(HashSet<Type> rawPlugins);
 
         private readonly string _directory;
 
-        private List<Type> _rawPlugins;
+        private HashSet<Type> _rawPlugins;
 
 
         public RawPluginLoader(string directory)
@@ -40,7 +40,7 @@ namespace PluginLoader.pluginloading
             var files = Directory.GetFiles(_directory, "*.dll");
 
 
-            _rawPlugins = new List<Type>();
+            _rawPlugins = new HashSet<Type>();
 
             foreach (var file in files)
             {
@@ -73,7 +73,7 @@ namespace PluginLoader.pluginloading
                 #endif
             }
 
-            callback?.Invoke(new List<Type>(_rawPlugins));
+            callback?.Invoke(_rawPlugins);
         }
     }
 }

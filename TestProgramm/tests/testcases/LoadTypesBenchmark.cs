@@ -16,6 +16,7 @@ namespace TestProgramm.tests.testcases
            
             StartTimer();
             _pluginLoader.Load();
+            _pluginLoader.Unload();
             StopTimer();
             DefineBenchmarkPoint(currentCycle,"Loading Assemblies from directory");
             ResetTimer();

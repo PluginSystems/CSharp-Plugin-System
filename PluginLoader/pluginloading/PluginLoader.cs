@@ -10,7 +10,7 @@ namespace PluginLoader.pluginloading
         private readonly RawPluginLoader _rawPluginLoader;
         private readonly Type _pluginType;
 
-        private readonly IDictionary<string, T> _plugins;
+        private IDictionary<string, T> _plugins;
 
         public PluginLoader(string directory)
         {
@@ -22,13 +22,14 @@ namespace PluginLoader.pluginloading
 
         public void Load()
         {
+            _plugins = new ConcurrentDictionary<string, T>();
             _rawPluginLoader.Load(_pluginType, rawPlugins =>
             {
-                rawPlugins.ForEach(rawPlugin =>
+                foreach (Type rawPlugin in rawPlugins)
                 {
                     var plugin = (T) Activator.CreateInstance(rawPlugin);
                     _plugins.Add(plugin.Name, plugin);
-                });
+                }
             });
         }
 

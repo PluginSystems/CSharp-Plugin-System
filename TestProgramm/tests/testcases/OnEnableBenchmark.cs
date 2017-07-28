@@ -29,6 +29,7 @@ namespace TestProgramm.tests.testcases
 
         public OnEnableBenchmark(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
         {
+            _pluginLoader.Unload();
         }
     }
 }

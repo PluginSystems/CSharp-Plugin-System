@@ -27,6 +27,7 @@ namespace TestProgramm.tests.testcases
         protected override void TearDown()
         {
             _pluginLoader.Disable();
+            _pluginLoader.Unload();
         }
         
 
