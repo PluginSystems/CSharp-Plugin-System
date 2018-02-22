@@ -5,13 +5,17 @@ namespace TestProgramm.tests.testcases
 {
     public class ContextSwitch : PluginTestCase
     {
-        
+        public ContextSwitch(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
+        {
+        }
+
+
         protected override void SetUp()
         {
             _pluginLoader.Load();
-            _pluginLoader.Enable(); 
+            _pluginLoader.Enable();
         }
-        
+
         protected override void RunTest(int currentCycle)
         {
             var plugin = _pluginLoader.GetByName("SecondPlugin");
@@ -22,17 +26,12 @@ namespace TestProgramm.tests.testcases
             DefineBenchmarkPoint(currentCycle, "ContextSwitch");
             ResetTimer();
         }
-        
-        
+
+
         protected override void TearDown()
         {
             _pluginLoader.Disable();
             _pluginLoader.Unload();
-        }
-        
-
-        public ContextSwitch(PluginLoader<IPlugin> pluginLoader) : base(pluginLoader)
-        {
         }
     }
 }

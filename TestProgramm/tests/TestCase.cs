@@ -9,13 +9,13 @@ namespace TestProgramm.tests
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private IList<BenchmarkRun> _benchmarkRuns;
 
-        private string className;
+        private readonly string className;
 
         public TestCase()
         {
             className = GetType().Name;
         }
-        
+
 
         public void RunTestFully(int cycles)
         {
@@ -26,10 +26,13 @@ namespace TestProgramm.tests
                 _benchmarkRuns.Add(new BenchmarkRun());
                 RunTest(i);
             }
+
             TearDown();
         }
 
-        protected virtual void SetUp(){}
+        protected virtual void SetUp()
+        {
+        }
 
         protected abstract void RunTest(int currentCycle);
 
@@ -38,17 +41,16 @@ namespace TestProgramm.tests
             return className;
         }
 
-        protected virtual void TearDown(){}
-        
+        protected virtual void TearDown()
+        {
+        }
+
 
         public void PrintStats(TextWriter writer)
         {
-            foreach (BenchmarkRun benbBenchmarkRun in _benchmarkRuns)
-            {
-                benbBenchmarkRun.PrintStats(writer);
-            }
+            foreach (var benbBenchmarkRun in _benchmarkRuns) benbBenchmarkRun.PrintStats(writer);
         }
-        
+
         protected void StartTimer()
         {
             _stopwatch.Start();
@@ -71,7 +73,8 @@ namespace TestProgramm.tests
 
         protected void DefineBenchmarkPoint(int cycle, string benchmarkPointName, int run)
         {
-            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName +"_"+(cycle+1)+"_"+ (run+1),GetElapsedNanos());
+            _benchmarkRuns[cycle].DefineBenchmarkPoint(benchmarkPointName + "_" + (cycle + 1) + "_" + (run + 1),
+                GetElapsedNanos());
         }
 
         private double GetElapsedMicros()
@@ -83,6 +86,5 @@ namespace TestProgramm.tests
         {
             return _stopwatch.Elapsed.TotalMilliseconds * 1_000_000;
         }
-
     }
 }

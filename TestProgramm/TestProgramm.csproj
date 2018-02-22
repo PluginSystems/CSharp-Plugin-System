@@ -1,76 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF3C2127-90E2-4C53-B0BA-B13A86DF5919}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestProgramm</RootNamespace>
-    <AssemblyName>TestProgramm</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.0.5" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="tests\BenchmarkRun.cs" />
-    <Compile Include="tests\PluginTestCase.cs" />
-    <Compile Include="tests\TestCase.cs" />
-    <Compile Include="tests\testcases\ContextSwitchBenchmark.cs" />
-    <Compile Include="tests\testcases\HttpPluginTwitchBenchmark.cs" />
-    <Compile Include="tests\testcases\LoadTypesBenchmark.cs" />
-    <Compile Include="tests\testcases\OnEnableBenchmark.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ProjectReference Include="..\C-sharpModule\C-sharpModule.csproj" />
+    <ProjectReference Include="..\PluginLoader\PluginLoader.csproj" />
+    <ProjectReference Include="..\SecondPlugin\SecondPlugin.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\C-sharpModule\C-sharpModule.csproj">
-      <Project>{a008dd31-c8c5-4276-97cf-284002bc50ed}</Project>
-      <Name>C-sharpModule</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PluginLoader\PluginLoader.csproj">
-      <Project>{1cc19b22-3752-476e-a3e1-462d442bdd47}</Project>
-      <Name>PluginLoader</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SecondPlugin\SecondPlugin.csproj">
-      <Project>{e895f248-200e-4cd5-a52c-c43519c7fd6b}</Project>
-      <Name>SecondPlugin</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

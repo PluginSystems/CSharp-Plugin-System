@@ -4,14 +4,15 @@ namespace C_sharpModule.twitchapi
 {
     public class TwitchAPI
     {
-        public SyncTwitchConnector _syncTwitchConnector { get; }
-        private string _clientId;
+        private readonly string _clientId;
 
         public TwitchAPI(string clientID)
         {
             _clientId = clientID;
             _syncTwitchConnector = new SyncTwitchConnector(_clientId);
         }
+
+        public SyncTwitchConnector _syncTwitchConnector { get; }
 
         public bool hasConnectedTwitchAcount(string twitchUserName)
         {

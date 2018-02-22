@@ -4,7 +4,7 @@ namespace C_sharpModule.twitchapi.impl
 {
     public class SyncTwitchConnector
     {
-        private string clientID;
+        private readonly string clientID;
 
         public SyncTwitchConnector(string clientID)
         {
@@ -18,10 +18,10 @@ namespace C_sharpModule.twitchapi.impl
 
         public StreamReader connectToStream(string twitchUserName)
         {
-            HttpWebRequest request = HttpWebRequest.CreateHttp(
+            var request = WebRequest.CreateHttp(
                 "https://api.twitch.tv/kraken/streams/" + twitchUserName + "?client_id=" +
                 clientID);
-            HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+            var response = (HttpWebResponse) request.GetResponse();
 
             return new StreamReader(response);
         }

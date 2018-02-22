@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PluginLoader.pluginloading
 {
     public class PluginLoader<T> where T : IPlugin
     {
-        private readonly RawPluginLoader _rawPluginLoader;
         private readonly Type _pluginType;
+        private readonly RawPluginLoader _rawPluginLoader;
 
         private IDictionary<string, T> _plugins;
 
@@ -25,7 +24,7 @@ namespace PluginLoader.pluginloading
             _plugins = new ConcurrentDictionary<string, T>();
             _rawPluginLoader.Load(_pluginType, rawPlugins =>
             {
-                foreach (Type rawPlugin in rawPlugins)
+                foreach (var rawPlugin in rawPlugins)
                 {
                     var plugin = (T) Activator.CreateInstance(rawPlugin);
                     _plugins.Add(plugin.Name, plugin);
@@ -36,18 +35,12 @@ namespace PluginLoader.pluginloading
 
         public void Enable()
         {
-            foreach (var plugin in _plugins)
-            {
-                plugin.Value.OnEnable();
-            }
+            foreach (var plugin in _plugins) plugin.Value.OnEnable();
         }
 
         public void Disable()
         {
-            foreach (var keyValuePair in _plugins)
-            {
-                keyValuePair.Value.OnDisable();
-            }
+            foreach (var keyValuePair in _plugins) keyValuePair.Value.OnDisable();
         }
 
 
@@ -69,8 +62,8 @@ namespace PluginLoader.pluginloading
 
     public interface IPlugin
     {
+        string Name { get; }
         void OnEnable();
         void OnDisable();
-        string Name { get; }
     }
 }

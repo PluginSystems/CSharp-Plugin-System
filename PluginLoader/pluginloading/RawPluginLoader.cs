@@ -31,11 +31,7 @@ namespace PluginLoader.pluginloading
 
         public void Load(Type pluginType, DelieverRawPlugins callback)
         {
-            if (!Directory.Exists(_directory))
-            {
-                Directory.CreateDirectory(_directory);
-                
-            }
+            if (!Directory.Exists(_directory)) Directory.CreateDirectory(_directory);
 
             var files = Directory.GetFiles(_directory, "*.dll");
 
@@ -51,26 +47,21 @@ namespace PluginLoader.pluginloading
                 if (assembly == null) continue;
 
 
-                
-                
-                #if Linq
+#if Linq
                 foreach (var type in assembly.GetTypes().Where(t=> pluginType.IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     _rawPlugins.Add(type);
                 }
 
                 #else
-                
+
                 foreach (var type in assembly.GetTypes())
                 {
                     if (type.IsInterface || type.IsAbstract) continue;
 
-                    if (type.GetInterfaces().Contains(pluginType))
-                    {
-                        _rawPlugins.Add(type);
-                    }
+                    if (type.GetInterfaces().Contains(pluginType)) _rawPlugins.Add(type);
                 }
-                #endif
+#endif
             }
 
             callback?.Invoke(_rawPlugins);
